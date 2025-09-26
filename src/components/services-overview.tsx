@@ -7,7 +7,7 @@ const services = [
     title: "Logo Design",
     description: "Professional logos that make your brand unforgettable",
     features: ["3 Concepts", "Unlimited Revisions", "All File Formats", "Copyright Transfer"],
-    price: "From $149",
+    price: "Chat for Quote!",
     popular: false
   },
   {
@@ -15,7 +15,7 @@ const services = [
     title: "YouTube Thumbnails",
     description: "Eye-catching thumbnails that boost your click-through rates",
     features: ["High CTR Design", "A/B Test Ready", "Mobile Optimized", "24h Delivery"],
-    price: "From $49",
+    price: "Chat for Quote!",
     popular: true
   },
   {
@@ -23,7 +23,7 @@ const services = [
     title: "Video Editing",
     description: "Professional video editing that keeps viewers engaged",
     features: ["Color Grading", "Motion Graphics", "Sound Design", "Fast Turnaround"],
-    price: "From $299",
+    price: "Chat for Quote!",
     popular: false
   }
 ]
@@ -76,7 +76,8 @@ export function ServicesOverview() {
                     ))}
                   </div>
                   
-                  <div className="text-2xl font-bold text-foreground mb-6">{service.price}</div>
+                  <div className="text-lg font-bold text-youtube-red mb-2">Pricing depends on your project.</div>
+                  <div className="text-base font-medium text-foreground mb-6">Chat with me for a free quote!</div>
                   
                   <Button 
                     className={`w-full font-medium ${
