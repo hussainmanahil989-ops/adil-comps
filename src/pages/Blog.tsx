@@ -128,7 +128,7 @@ export default function Blog() {
         {/* Page header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6">
-            Design <span className="bg-gradient-youtube bg-clip-text text-transparent">Insights</span>
+            Design <span className="gradient-text-youtube">Insights</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Practical tips, case studies, and insights to help you create designs that convert. 

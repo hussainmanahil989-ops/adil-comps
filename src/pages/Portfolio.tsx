@@ -99,7 +99,7 @@ export default function Portfolio() {
         {/* Page header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6">
-            Portfolio That <span className="bg-gradient-youtube bg-clip-text text-transparent">Drives Results</span>
+            Portfolio That <span className="gradient-text-youtube">Drives Results</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Real projects, real results. Each design is crafted to not just look amazing, but to drive measurable business growth for my clients.
@@ -109,7 +109,7 @@ export default function Portfolio() {
         {/* Before/After Showcase */}
         <div className="mb-20">
           <h2 className="text-3xl font-bold text-foreground mb-8 text-center">
-            Transformation <span className="bg-gradient-youtube bg-clip-text text-transparent">Gallery</span>
+            Transformation <span className="gradient-text-youtube">Gallery</span>
           </h2>
           <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
             See the dramatic improvements that drive real business results. Drag the slider to reveal the transformation.

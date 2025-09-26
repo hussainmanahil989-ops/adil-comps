@@ -28,7 +28,7 @@ export function HeroSection() {
           <div className="space-y-4">
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight">
               Transform Your Brand with
-              <span className="bg-gradient-youtube bg-clip-text text-transparent block">
+              <span className="gradient-text-youtube block">
                 Premium Designs
               </span>
             </h1>

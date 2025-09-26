@@ -95,7 +95,7 @@ export default function Services() {
         {/* Page header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6">
-            Services & <span className="bg-gradient-youtube bg-clip-text text-transparent">Pricing</span>
+            Services & <span className="gradient-text-youtube">Pricing</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Professional design services with transparent pricing. Choose the package that fits your needs, 

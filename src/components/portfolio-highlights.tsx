@@ -43,7 +43,7 @@ export function PortfolioHighlights() {
         {/* Section header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Portfolio That <span className="bg-gradient-youtube bg-clip-text text-transparent">Converts</span>
+            Portfolio That <span className="gradient-text-youtube">Converts</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Real projects, real results. See how my designs helped clients grow their businesses and increase engagement.

@@ -84,7 +84,7 @@ export function TrustBadges({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <h2 className="text-xl font-semibold text-foreground mb-2">
-              Trusted by <span className="bg-gradient-youtube bg-clip-text text-transparent">500+</span> Clients Worldwide
+              Trusted by <span className="gradient-text-youtube">500+</span> Clients Worldwide
             </h2>
             <p className="text-sm text-muted-foreground">
               Join successful businesses and creators who chose our premium design services

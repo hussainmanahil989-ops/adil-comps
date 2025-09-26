@@ -476,7 +476,7 @@ export default function BlogPost() {
           <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-foreground mb-4">
-                Related <span className="bg-gradient-youtube bg-clip-text text-transparent">Articles</span>
+                Related <span className="gradient-text-youtube">Articles</span>
               </h2>
               <p className="text-muted-foreground">More insights to help grow your brand</p>
             </div>

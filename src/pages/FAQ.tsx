@@ -97,7 +97,7 @@ export default function FAQ() {
         {/* Page header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6">
-            Frequently Asked <span className="bg-gradient-youtube bg-clip-text text-transparent">Questions</span>
+            Frequently Asked <span className="gradient-text-youtube">Questions</span>
           </h1>
           <p className="text-xl text-muted-foreground">
             Everything you need to know about working with me. Can't find what you're looking for? 

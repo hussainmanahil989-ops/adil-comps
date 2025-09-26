@@ -261,6 +261,19 @@
     background: var(--gradient-subtle);
   }
 
+  /* Gradient text utility with fallback */
+  .gradient-text-youtube {
+    background: var(--gradient-youtube);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    /* Fallback color for browsers that don't support background-clip: text */
+    @supports not (background-clip: text) {
+      color: hsl(var(--youtube-red));
+    }
+  }
+
   .shadow-premium {
     box-shadow: var(--shadow-medium);
   }

@@ -25,7 +25,7 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
           <div>
             <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6">
-              Hi, I'm <span className="bg-gradient-youtube bg-clip-text text-transparent">Adil</span>
+              Hi, I'm <span className="gradient-text-youtube">Adil</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-6 leading-relaxed">
               A passionate designer and video editor with over 8 years of experience helping brands and YouTubers 

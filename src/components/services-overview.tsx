@@ -35,7 +35,7 @@ export function ServicesOverview() {
         {/* Section header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Services That <span className="bg-gradient-youtube bg-clip-text text-transparent">Drive Results</span>
+            Services That <span className="gradient-text-youtube">Drive Results</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Professional design services tailored to grow your business and increase conversions.
