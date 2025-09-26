@@ -1,23 +1,23 @@
 import { useState } from 'react';
-import { Navigate } from 'react-router-dom';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Button } from '@/components/ui/button';
+import { Navigate, Routes, Route, useLocation } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { SEOHead } from '@/components/seo-head';
-import { BlogManager } from '@/components/admin/BlogManager';
-import { PortfolioManager } from '@/components/admin/PortfolioManager';
-import { TestimonialsManager } from '@/components/admin/TestimonialsManager';
-import { ContactLeadsManager } from '@/components/admin/ContactLeadsManager';
-import { LogOut } from 'lucide-react';
+import { AdminSidebar } from '@/components/admin/AdminSidebar';
+import { DashboardOverview } from '@/components/admin/DashboardOverview';
+import { EnhancedBlogManager } from '@/components/admin/EnhancedBlogManager';
+import { EnhancedPortfolioManager } from '@/components/admin/EnhancedPortfolioManager';
+import { EnhancedTestimonialsManager } from '@/components/admin/EnhancedTestimonialsManager';
+import { EnhancedContactLeadsManager } from '@/components/admin/EnhancedContactLeadsManager';
 
 export default function Admin() {
-  const { user, isAdmin, loading, signOut } = useAuth();
-  const [activeTab, setActiveTab] = useState('blog');
+  const { user, isAdmin, loading } = useAuth();
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const location = useLocation();
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div>Loading...</div>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-subtle">
+        <div className="text-xl font-medium">Loading dashboard...</div>
       </div>
     );
   }
@@ -26,56 +26,30 @@ export default function Admin() {
     return <Navigate to="/auth" replace />;
   }
 
-  const handleSignOut = async () => {
-    await signOut();
-  };
-
   return (
     <>
       <SEOHead 
-        title="Admin Dashboard - Adil's Portfolio"
-        description="Content management dashboard"
+        title="CMS Dashboard - Adil's Portfolio"
+        description="Professional content management system"
       />
-      <main className="min-h-screen bg-background">
-        <div className="border-b">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-16">
-              <h1 className="text-2xl font-bold">Admin Dashboard</h1>
-              <Button variant="outline" onClick={handleSignOut}>
-                <LogOut className="h-4 w-4 mr-2" />
-                Sign Out
-              </Button>
-            </div>
+      <div className="min-h-screen bg-background flex">
+        <AdminSidebar 
+          collapsed={sidebarCollapsed}
+          onCollapsedChange={setSidebarCollapsed}
+        />
+        
+        <main className="flex-1 overflow-auto">
+          <div className="p-8">
+            <Routes>
+              <Route path="/" element={<DashboardOverview />} />
+              <Route path="/blog" element={<EnhancedBlogManager />} />
+              <Route path="/portfolio" element={<EnhancedPortfolioManager />} />
+              <Route path="/testimonials" element={<EnhancedTestimonialsManager />} />
+              <Route path="/leads" element={<EnhancedContactLeadsManager />} />
+            </Routes>
           </div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <Tabs value={activeTab} onValueChange={setActiveTab}>
-            <TabsList className="grid w-full grid-cols-4">
-              <TabsTrigger value="blog">Blog Posts</TabsTrigger>
-              <TabsTrigger value="portfolio">Portfolio</TabsTrigger>
-              <TabsTrigger value="testimonials">Testimonials</TabsTrigger>
-              <TabsTrigger value="leads">Contact Leads</TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="blog" className="mt-6">
-              <BlogManager />
-            </TabsContent>
-
-            <TabsContent value="portfolio" className="mt-6">
-              <PortfolioManager />
-            </TabsContent>
-
-            <TabsContent value="testimonials" className="mt-6">
-              <TestimonialsManager />
-            </TabsContent>
-
-            <TabsContent value="leads" className="mt-6">
-              <ContactLeadsManager />
-            </TabsContent>
-          </Tabs>
-        </div>
-      </main>
+        </main>
+      </div>
     </>
   );
 }
