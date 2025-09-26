@@ -27,7 +27,7 @@ const testimonials = [
     id: 3,
     name: "Marcus Williams",
     role: "Tech Startup CEO",
-    platform: "Upwork",
+    platform: "Fiverr",
     rating: 5,
     text: "Video editing was exceptional. Our product launch video generated $500K in first week sales. Adi understood our vision perfectly.",
     avatar: "/api/placeholder/60/60",

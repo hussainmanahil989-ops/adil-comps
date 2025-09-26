@@ -187,7 +187,7 @@ export function TestimonialsSection() {
             </div>
             <div className="flex items-center space-x-2">
               <Star className="h-5 w-5 text-youtube-red fill-current" />
-              <span className="font-medium">Top Rated on Upwork</span>
+              <span className="font-medium">Premium Designer</span>
             </div>
             <div className="flex items-center space-x-2">
               <Star className="h-5 w-5 text-youtube-red fill-current" />

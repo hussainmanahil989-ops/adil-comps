@@ -41,9 +41,9 @@ const platformBadges = [
     icon: Shield
   },
   {
-    name: 'Upwork Top Rated',
+    name: 'Premium Designer',
     rating: '100%',
-    reviews: '98% success rate',
+    reviews: '98% satisfaction',
     color: 'bg-blue-500',
     icon: Award
   }

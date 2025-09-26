@@ -65,7 +65,7 @@ export function SEOHead({
           "image": fullImageUrl,
           "sameAs": [
             "https://fiverr.com/gfxbyadi",
-            "https://upwork.com/freelancers/gfxbyadi",
+            "https://facebook.com/adilgfx",
             "https://instagram.com/gfxbyadi",
             "https://linkedin.com/in/gfxbyadi"
           ],

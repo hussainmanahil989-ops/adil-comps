@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Youtube, Instagram, Linkedin } from "lucide-react"
+import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin } from "lucide-react"
 import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -26,13 +26,12 @@ const footerLinks = {
   business: [
     { name: "Hire Me (Direct)", href: "/contact" },
     { name: "Fiverr Profile", href: "https://fiverr.com/adilgfx" },
-    { name: "Upwork Profile", href: "https://upwork.com/freelancers/adilgfx" },
     { name: "Media Kit (PDF)", href: "#", special: "download" }
   ]
 }
 
 const socialLinks = [
-  { name: "YouTube", href: "https://youtube.com/@adilgfx", icon: Youtube },
+  { name: "Facebook", href: "https://facebook.com/adilgfx", icon: Facebook },
   { name: "Instagram", href: "https://instagram.com/adilgfx", icon: Instagram },
   { name: "LinkedIn", href: "https://linkedin.com/in/adilgfx", icon: Linkedin }
 ]
