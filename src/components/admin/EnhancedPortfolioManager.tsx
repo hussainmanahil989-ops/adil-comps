@@ -248,11 +248,9 @@ export function EnhancedPortfolioManager() {
               <Button
                 variant={viewMode === 'list' ? 'default' : 'outline'}
                 size="sm"
-                <SelectItem value="Logo Design">Logo Design</SelectItem>
-                <SelectItem value="Thumbnail Design">Thumbnail Design</SelectItem>
-                <SelectItem value="Video Editing">Video Editing</SelectItem>
-                <SelectItem value="Web Design">Web Design</SelectItem>
-                <SelectItem value="Branding">Branding</SelectItem>
+                onClick={() => setViewMode('list')}
+              >
+                <List className="h-4 w-4" />
               </Button>
             </div>
           </div>

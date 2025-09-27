@@ -23,11 +23,6 @@ const sidebarItems = [
     icon: LayoutDashboard,
   },
   {
-    title: 'Content Manager',
-    href: '/admin/content',
-    icon: FileText,
-  },
-  {
     title: 'Blog Posts',
     href: '/admin/blog',
     icon: FileText,
@@ -35,11 +30,6 @@ const sidebarItems = [
   {
     title: 'Portfolio',
     href: '/admin/portfolio',
-    icon: Briefcase,
-  },
-  {
-    title: 'Categories',
-    href: '/admin/categories',
     icon: Briefcase,
   },
   {
