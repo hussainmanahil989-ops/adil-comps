@@ -1,4 +1,4 @@
-import { Palette, Play, Zap, CheckCircle } from "lucide-react"
+import { Palette, Play, Zap, Settings, CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const services = [
@@ -25,6 +25,14 @@ const services = [
     features: ["Color Grading", "Motion Graphics", "Sound Design", "Fast Turnaround"],
     price: "Chat for Quote!",
     popular: false
+  },
+  {
+    icon: Settings,
+    title: "YouTube Channel Setup",
+    description: "Complete channel optimization for maximum growth and visibility",
+    features: ["Channel Branding", "SEO Optimization", "Analytics Setup", "Strategy Guide"],
+    price: "Chat for Quote!",
+    popular: false
   }
 ]
 
@@ -43,7 +51,7 @@ export function ServicesOverview() {
         </div>
 
         {/* Services grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service) => {
             const Icon = service.icon
             return (

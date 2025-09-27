@@ -1,92 +1,45 @@
 import { useState, useEffect } from "react"
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react"
 import { Button } from "@/components/ui/button"
-
-const testimonials = [
-  {
-    id: 1,
-    name: "Alex Chen",
-    role: "YouTube Creator (2.3M subscribers)",
-    platform: "YouTube",
-    rating: 5,
-    text: "Adi's thumbnails increased my CTR by 180% in just 2 weeks. My channel went from 50K to 500K views per video. Absolutely game-changing work!",
-    avatar: "/api/placeholder/60/60",
-    result: "180% CTR increase"
-  },
-  {
-    id: 2,
-    name: "Sarah Johnson",
-    role: "E-commerce Founder",
-    platform: "Fiverr",
-    rating: 5,
-    text: "The logo Adi created for my brand helped us raise $2M in funding. Investors specifically commented on how professional our brand looked.",
-    avatar: "/api/placeholder/60/60",
-    result: "$2M funding raised"
-  },
-  {
-    id: 3,
-    name: "Marcus Williams",
-    role: "Tech Startup CEO",
-    platform: "Fiverr",
-    rating: 5,
-    text: "Video editing was exceptional. Our product launch video generated $500K in first week sales. Adi understood our vision perfectly.",
-    avatar: "/api/placeholder/60/60",
-    result: "$500K first week sales"
-  },
-  {
-    id: 4,
-    name: "Lisa Rodriguez",
-    role: "Gaming YouTuber (1.8M subscribers)",
-    platform: "Direct",
-    rating: 5,
-    text: "Working with Adi for 6 months, my channel grew from 200K to 1.8M subscribers. His thumbnails are click magnets!",
-    avatar: "/api/placeholder/60/60",
-    result: "9x subscriber growth"
-  },
-  {
-    id: 5,
-    name: "David Park",
-    role: "Restaurant Chain Owner",
-    platform: "Fiverr",
-    rating: 5,
-    text: "Complete rebrand boosted our customer retention by 60%. The new visual identity perfectly captures our premium positioning.",
-    avatar: "/api/placeholder/60/60",
-    result: "60% retention boost"
-  },
-  {
-    id: 6,
-    name: "Emma Thompson",
-    role: "Course Creator",
-    platform: "Direct",
-    rating: 5,
-    text: "Adi's designs helped my online course generate $100K+ in sales in the first month. The visuals perfectly matched my brand message.",
-    avatar: "/api/placeholder/60/60",
-    result: "$100K+ first month"
-  }
-]
+import { useTestimonials } from "@/hooks/useSupabaseData"
 
 export function CarouselTestimonials() {
+  const { testimonials, loading, error } = useTestimonials();
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
 
+  // Use fallback testimonials if no data from database
+  const fallbackTestimonials = [
+    {
+      id: 1,
+      client_name: "Alex Chen",
+      client_role: "YouTube Creator (2.3M subscribers)",
+      review: "Adi's thumbnails increased my CTR by 180% in just 2 weeks. My channel went from 50K to 500K views per video. Absolutely game-changing work!",
+      rating: 5,
+      source: "YouTube"
+    }
+  ];
+
+  const displayTestimonials = testimonials.length > 0 ? testimonials : fallbackTestimonials;
+
   useEffect(() => {
-    if (!isAutoPlaying) return
+    if (!isAutoPlaying || loading) return
     
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length)
+      setCurrentIndex((prev) => (prev + 1) % displayTestimonials.length)
     }, 5000)
     
     return () => clearInterval(interval)
-  }, [isAutoPlaying])
+  }, [isAutoPlaying, displayTestimonials.length, loading])
 
   const goToPrevious = () => {
     setIsAutoPlaying(false)
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+    setCurrentIndex((prev) => (prev - 1 + displayTestimonials.length) % displayTestimonials.length)
   }
 
   const goToNext = () => {
     setIsAutoPlaying(false)
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length)
+    setCurrentIndex((prev) => (prev + 1) % displayTestimonials.length)
   }
 
   const goToSlide = (index: number) => {
@@ -94,7 +47,27 @@ export function CarouselTestimonials() {
     setCurrentIndex(index)
   }
 
-  const currentTestimonial = testimonials[currentIndex]
+  if (loading) {
+    return (
+      <div className="relative">
+        <div className="bg-card border border-border rounded-2xl p-8 shadow-large min-h-[300px] animate-pulse">
+          <div className="h-6 w-6 bg-muted rounded mb-4"></div>
+          <div className="h-4 bg-muted rounded mb-2"></div>
+          <div className="h-4 bg-muted rounded mb-4"></div>
+          <div className="h-8 bg-muted rounded mb-6"></div>
+          <div className="flex items-center space-x-4">
+            <div className="w-12 h-12 bg-muted rounded-full"></div>
+            <div>
+              <div className="h-4 bg-muted rounded mb-1"></div>
+              <div className="h-3 bg-muted rounded"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const currentTestimonial = displayTestimonials[currentIndex]
 
   return (
     <div className="relative">
@@ -104,30 +77,32 @@ export function CarouselTestimonials() {
           <Quote className="h-8 w-8 text-youtube-red mb-4" />
           
           <blockquote className="text-lg text-foreground mb-6 italic">
-            "{currentTestimonial.text}"
+            "{currentTestimonial.review}"
           </blockquote>
           
           <div className="bg-gradient-youtube/10 text-youtube-red px-4 py-2 rounded-lg text-sm font-medium mb-6 inline-block">
-            📈 {currentTestimonial.result}
+            ⭐ {currentTestimonial.rating || 5}/5 Stars
           </div>
         </div>
         
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <img 
-              src={currentTestimonial.avatar} 
-              alt={currentTestimonial.name}
-              className="w-12 h-12 rounded-full object-cover"
-            />
+            <div className="w-12 h-12 rounded-full bg-gradient-youtube flex items-center justify-center text-white font-semibold">
+              {currentTestimonial.client_name.split(' ').map((n: string) => n[0]).join('')}
+            </div>
             <div>
-              <div className="font-semibold text-foreground">{currentTestimonial.name}</div>
-              <div className="text-sm text-muted-foreground">{currentTestimonial.role}</div>
-              <div className="text-xs text-youtube-red font-medium">via {currentTestimonial.platform}</div>
+              <div className="font-semibold text-foreground">{currentTestimonial.client_name}</div>
+              {currentTestimonial.client_role && (
+                <div className="text-sm text-muted-foreground">{currentTestimonial.client_role}</div>
+              )}
+              {currentTestimonial.source && (
+                <div className="text-xs text-youtube-red font-medium">via {currentTestimonial.source}</div>
+              )}
             </div>
           </div>
           
           <div className="flex items-center space-x-1">
-            {[...Array(currentTestimonial.rating)].map((_, i) => (
+            {[...Array(currentTestimonial.rating || 5)].map((_, i) => (
               <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
             ))}
           </div>
@@ -155,7 +130,7 @@ export function CarouselTestimonials() {
 
       {/* Dots indicator */}
       <div className="flex justify-center space-x-2 mt-6">
-        {testimonials.map((_, index) => (
+        {displayTestimonials.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
