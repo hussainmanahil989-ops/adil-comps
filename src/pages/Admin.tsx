@@ -8,6 +8,8 @@ import { EnhancedBlogManager } from '@/components/admin/EnhancedBlogManager';
 import { EnhancedPortfolioManager } from '@/components/admin/EnhancedPortfolioManager';
 import { EnhancedTestimonialsManager } from '@/components/admin/EnhancedTestimonialsManager';
 import { EnhancedContactLeadsManager } from '@/components/admin/EnhancedContactLeadsManager';
+import { ContentManager } from '@/components/admin/ContentManager';
+import { PortfolioCategoryManager } from '@/components/admin/PortfolioCategoryManager';
 
 export default function Admin() {
   const { user, isAdmin, loading } = useAuth();
@@ -42,8 +44,10 @@ export default function Admin() {
           <div className="p-8">
             <Routes>
               <Route index element={<DashboardOverview />} />
+              <Route path="content" element={<ContentManager />} />
               <Route path="blog" element={<EnhancedBlogManager />} />
               <Route path="portfolio" element={<EnhancedPortfolioManager />} />
+              <Route path="categories" element={<PortfolioCategoryManager />} />
               <Route path="testimonials" element={<EnhancedTestimonialsManager />} />
               <Route path="leads" element={<EnhancedContactLeadsManager />} />
             </Routes>
