@@ -1,9 +1,7 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Eye, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { BeforeAfterSlider } from "@/components/before-after-slider"
-import { supabase } from "@/integrations/supabase/client"
-import { useToast } from "@/hooks/use-toast"
 
 const categories = ["All", "Logos", "Thumbnails", "Video Editing", "Branding"]
 
@@ -31,50 +29,69 @@ const beforeAfterItems = [
   }
 ]
 
-interface PortfolioProject {
-  id: string;
-  title: string;
-  category: string;
-  description?: string;
-  image_before?: string;
-  image_after?: string;
-  video_demo?: string;
-  created_at: string;
-}
+const portfolioItems = [
+  {
+    id: 1,
+    title: "Tech Startup Logo",
+    category: "Logos",
+    description: "Modern logo design for a fintech startup that raised $5M",
+    image: "/api/placeholder/400/300",
+    tags: ["Logo", "Tech", "Startup"],
+    results: "300% brand recognition increase"
+  },
+  {
+    id: 2,
+    title: "Gaming Thumbnail Pack",
+    category: "Thumbnails",
+    description: "High-converting thumbnail series for gaming channel",
+    image: "/api/placeholder/400/300",
+    tags: ["Gaming", "YouTube", "Series"],
+    results: "25% CTR improvement"
+  },
+  {
+    id: 3,
+    title: "Product Launch Video",
+    category: "Video Editing",
+    description: "Launch video for SaaS product with motion graphics",
+    image: "/api/placeholder/400/300",
+    tags: ["Video", "SaaS", "Launch"],
+    results: "$100K+ first week sales"
+  },
+  {
+    id: 4,
+    title: "Restaurant Brand Identity",
+    category: "Branding",
+    description: "Complete branding package for premium restaurant chain",
+    image: "/api/placeholder/400/300",
+    tags: ["Restaurant", "Premium", "Identity"],
+    results: "50% customer retention boost"
+  },
+  {
+    id: 5,
+    title: "E-commerce Logo Suite",
+    category: "Logos",
+    description: "Logo variations for multi-million dollar e-commerce brand",
+    image: "/api/placeholder/400/300",
+    tags: ["E-commerce", "Suite", "Variations"],
+    results: "200% conversion rate increase"
+  },
+  {
+    id: 6,
+    title: "Viral YouTube Thumbnails",
+    category: "Thumbnails",
+    description: "Thumbnails that generated 10M+ combined views",
+    image: "/api/placeholder/400/300",
+    tags: ["Viral", "YouTube", "High-CTR"],
+    results: "10M+ views generated"
+  }
+]
 
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState("All")
-  const [projects, setProjects] = useState<PortfolioProject[]>([])
-  const [loading, setLoading] = useState(true)
-  const { toast } = useToast()
-  
-  useEffect(() => {
-    fetchProjects();
-  }, []);
-
-  const fetchProjects = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('portfolio_projects')
-        .select('*')
-        .order('created_at', { ascending: false });
-
-      if (error) throw error;
-      setProjects(data || []);
-    } catch (error) {
-      toast({
-        variant: 'destructive',
-        title: 'Error',
-        description: 'Failed to load portfolio projects',
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
   
   const filteredItems = activeCategory === "All" 
-    ? projects 
-    : projects.filter(item => item.category === activeCategory)
+    ? portfolioItems 
+    : portfolioItems.filter(item => item.category === activeCategory)
 
   return (
     <main className="pt-24 pb-20">
@@ -120,68 +137,54 @@ export default function Portfolio() {
 
         {/* Portfolio grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {loading ? (
-            Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="bg-card rounded-xl overflow-hidden animate-pulse">
-                <div className="aspect-video bg-muted"></div>
-                <div className="p-6">
-                  <div className="h-4 bg-muted rounded mb-2"></div>
-                  <div className="h-3 bg-muted rounded mb-3"></div>
-                  <div className="h-8 bg-muted rounded"></div>
-                </div>
-              </div>
-            ))
-          ) : (
-            filteredItems.map((item) => (
-              <div 
-                key={item.id}
-                className="portfolio-item bg-card rounded-xl overflow-hidden shadow-small hover:shadow-premium transition-all duration-500 group"
-              >
-                <div className="relative aspect-video bg-muted">
-                  <img 
-                    src={item.image_after || item.image_before || "/api/placeholder/400/300"} 
-                    alt={item.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="portfolio-overlay">
-                    <div className="text-white">
-                      <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-                      <div className="flex items-center space-x-2">
-                        <Button variant="secondary" size="sm">
-                          <Eye className="h-4 w-4 mr-2" />
-                          View Details
-                        </Button>
-                        {item.video_demo && (
-                          <Button variant="secondary" size="sm" asChild>
-                            <a href={item.video_demo} target="_blank" rel="noopener noreferrer">
-                              <ExternalLink className="h-4 w-4" />
-                            </a>
-                          </Button>
-                        )}
-                      </div>
+          {filteredItems.map((item) => (
+            <div 
+              key={item.id}
+              className="portfolio-item bg-card rounded-xl overflow-hidden shadow-small hover:shadow-premium transition-all duration-500 group"
+            >
+              <div className="relative aspect-video bg-muted">
+                <img 
+                  src={item.image} 
+                  alt={item.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="portfolio-overlay">
+                  <div className="text-white">
+                    <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
+                    <div className="flex items-center space-x-2">
+                      <Button variant="secondary" size="sm">
+                        <Eye className="h-4 w-4 mr-2" />
+                        View Details
+                      </Button>
+                      <Button variant="secondary" size="sm">
+                        <ExternalLink className="h-4 w-4" />
+                      </Button>
                     </div>
                   </div>
                 </div>
+              </div>
 
-                <div className="p-6">
-                  <div className="flex flex-wrap gap-2 mb-3">
-                    <span className="px-2 py-1 bg-muted text-muted-foreground text-xs rounded-md font-medium">
-                      {item.category}
+              <div className="p-6">
+                <div className="flex flex-wrap gap-2 mb-3">
+                  {item.tags.map((tag) => (
+                    <span 
+                      key={tag}
+                      className="px-2 py-1 bg-muted text-muted-foreground text-xs rounded-md font-medium"
+                    >
+                      {tag}
                     </span>
-                  </div>
-                  
-                  <h3 className="text-lg font-semibold text-foreground mb-2">{item.title}</h3>
-                  {item.description && (
-                    <p className="text-muted-foreground text-sm mb-3">{item.description}</p>
-                  )}
-                  
-                  <div className="bg-gradient-youtube/10 text-youtube-red px-3 py-2 rounded-lg text-sm font-medium">
-                    📅 {new Date(item.created_at).toLocaleDateString()}
-                  </div>
+                  ))}
+                </div>
+                
+                <h3 className="text-lg font-semibold text-foreground mb-2">{item.title}</h3>
+                <p className="text-muted-foreground text-sm mb-3">{item.description}</p>
+                
+                <div className="bg-gradient-youtube/10 text-youtube-red px-3 py-2 rounded-lg text-sm font-medium">
+                  📈 {item.results}
                 </div>
               </div>
-            ))
-          )}
+            </div>
+          ))}
         </div>
 
         {/* Bottom CTA */}
