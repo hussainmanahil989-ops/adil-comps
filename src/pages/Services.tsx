@@ -62,26 +62,6 @@ const services = [
       "Professional production quality",
       "Cross-platform optimization"
     ]
-  },
-  {
-    title: "YouTube Channel Setup",
-    subtitle: "Complete Channel Optimization",
-    description: "Launch and optimize your YouTube channel for maximum growth and visibility.",
-    icon: "📺",
-    features: [
-      "Channel art & banner design",
-      "SEO-optimized descriptions",
-      "Keyword research & strategy",
-      "Playlist organization",
-      "Channel branding kit",
-      "Analytics setup & tracking"
-    ],
-    benefits: [
-      "Professional channel presence",
-      "Improved search visibility",
-      "Consistent brand identity",
-      "Growth-focused optimization"
-    ]
   }
 ]
 
