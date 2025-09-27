@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast"
 import { z } from "zod"
 import { SEOHead } from "@/components/seo-head"
+import { supabase } from "@/integrations/supabase/client"
 
 const contactSchema = z.object({
   name: z.string().trim().min(2, "Name must be at least 2 characters").max(100, "Name must be less than 100 characters"),
@@ -37,8 +38,18 @@ export default function Contact() {
       // Validate form data
       contactSchema.parse(formData)
 
-      // TODO: Send email notification (requires backend integration)
-      console.log("Form submitted:", formData)
+      // Save to Supabase
+      const { error } = await supabase
+        .from('contact_leads')
+        .insert([{
+          name: formData.name,
+          email: formData.email,
+          whatsapp: '', // Optional field, not in current form
+          message: `Service: ${formData.service}\nBudget: ${formData.budget || 'Not specified'}\nTimeline: ${formData.timeline || 'Not specified'}\n\nMessage: ${formData.message}`,
+          status: 'new'
+        }]);
+
+      if (error) throw error;
       
       // Show success message
       toast({
