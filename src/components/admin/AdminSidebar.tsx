@@ -6,7 +6,6 @@ import {
   Briefcase, 
   MessageSquare, 
   Users, 
-  Settings,
   ChevronLeft,
   ChevronRight,
   User,
@@ -63,29 +62,16 @@ export function AdminSidebar({ collapsed, onCollapsedChange }: AdminSidebarProps
       "h-screen bg-sidebar border-r border-sidebar-border flex flex-col transition-all duration-300",
       collapsed ? "w-16" : "w-64"
     )}>
-      {/* Header */}
-      <div className="p-4 border-b border-sidebar-border">
-        <div className="flex items-center justify-between">
-          {!collapsed && (
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-youtube rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">A</span>
-              </div>
-              <div>
-                <h2 className="font-semibold text-sidebar-primary">CMS Admin</h2>
-                <p className="text-xs text-sidebar-foreground">Content Management</p>
-              </div>
-            </div>
-          )}
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => onCollapsedChange(!collapsed)}
-            className="h-8 w-8 p-0"
-          >
-            {collapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
-          </Button>
-        </div>
+      {/* Collapse Toggle */}
+      <div className="p-2">
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => onCollapsedChange(!collapsed)}
+          className="h-8 w-8 p-0 ml-auto flex"
+        >
+          {collapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
+        </Button>
       </div>
 
       {/* Navigation */}
@@ -137,22 +123,14 @@ export function AdminSidebar({ collapsed, onCollapsedChange }: AdminSidebarProps
         </div>
         
         {!collapsed && (
-          <div className="mt-3 flex space-x-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="flex-1 text-xs"
-            >
-              <Settings className="h-3 w-3 mr-1" />
-              Settings
-            </Button>
+          <div className="mt-3">
             <Button
               variant="ghost"
               size="sm"
               onClick={handleSignOut}
-              className="flex-1 text-xs"
+              className="w-full text-xs justify-start"
             >
-              <LogOut className="h-3 w-3 mr-1" />
+              <LogOut className="h-3 w-3 mr-2" />
               Logout
             </Button>
           </div>
