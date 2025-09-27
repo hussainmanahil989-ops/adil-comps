@@ -248,3 +248,8 @@ export function useSiteSettings() {
 
   return { settings, loading, error };
 }
+
+// Re-export existing hooks for consistency
+export function usePortfolioProjects() {
+  return useOriginalPortfolioProjects();
+}
