@@ -1,4 +1,4 @@
-import { Palette, Play, Zap, Settings, CircleCheck as CheckCircle } from "lucide-react"
+import { Palette, Play, Zap, Settings, CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useServiceHighlights } from "@/hooks/useDynamicContent"
 
