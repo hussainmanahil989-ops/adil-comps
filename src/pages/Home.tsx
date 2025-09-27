@@ -1,12 +1,12 @@
 import { SEOHead } from "@/components/seo-head"
 import { NewsletterSignup } from "@/components/newsletter-signup"
-import { CheckCircle } from "lucide-react"
-import { HeroSection } from "@/components/hero-section"
+import { CircleCheck as CheckCircle } from "lucide-react"
+import { DynamicHeroSection } from "@/components/dynamic/DynamicHeroSection"
 import { PortfolioHighlights } from "@/components/portfolio-highlights"
-import { ServicesOverview } from "@/components/services-overview"
+import { DynamicServicesOverview } from "@/components/dynamic/DynamicServicesOverview"
 import { TestimonialsSection } from "@/components/testimonials-section"
 import { CaseStudies } from "@/components/case-studies"
-import { TrustBadges } from "@/components/trust-badges"
+import { DynamicTrustBadges } from "@/components/dynamic/DynamicTrustBadges"
 
 export default function Home() {
   return (
@@ -18,10 +18,10 @@ export default function Home() {
         url="/"
       />
       <main className="pt-16">
-        <HeroSection />
-        <TrustBadges />
+        <DynamicHeroSection />
+        <DynamicTrustBadges />
         <PortfolioHighlights />
-        <ServicesOverview />
+        <DynamicServicesOverview />
         <TestimonialsSection />
         <CaseStudies />
         
