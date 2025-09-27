@@ -41,11 +41,11 @@ export default function Admin() {
         <main className="flex-1 overflow-auto">
           <div className="p-8">
             <Routes>
-              <Route path="/" element={<DashboardOverview />} />
-              <Route path="/blog" element={<EnhancedBlogManager />} />
-              <Route path="/portfolio" element={<EnhancedPortfolioManager />} />
-              <Route path="/testimonials" element={<EnhancedTestimonialsManager />} />
-              <Route path="/leads" element={<EnhancedContactLeadsManager />} />
+              <Route index element={<DashboardOverview />} />
+              <Route path="blog" element={<EnhancedBlogManager />} />
+              <Route path="portfolio" element={<EnhancedPortfolioManager />} />
+              <Route path="testimonials" element={<EnhancedTestimonialsManager />} />
+              <Route path="leads" element={<EnhancedContactLeadsManager />} />
             </Routes>
           </div>
         </main>
