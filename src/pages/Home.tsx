@@ -1,6 +1,6 @@
 import { SEOHead } from "@/components/seo-head"
 import { NewsletterSignup } from "@/components/newsletter-signup"
-import { CheckCircle } from "lucide-react"
+import { CircleCheck as CheckCircle } from "lucide-react"
 import { DynamicHeroSection } from "@/components/dynamic/DynamicHeroSection"
 import { PortfolioHighlights } from "@/components/portfolio-highlights"
 import { DynamicServicesOverview } from "@/components/dynamic/DynamicServicesOverview"
